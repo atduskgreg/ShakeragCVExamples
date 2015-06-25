@@ -29,10 +29,14 @@ void draw() {
   opencv.dilate();
   opencv.erode();
   
-  opencv.flip(OpenCV.HORIZONTAL);
+//  opencv.flip(OpenCV.HORIZONTAL);
+  
+  PImage output = opencv.getOutput();
+  
+  video.mask(output);
   
   
-  image(opencv.getOutput(), 0, 0);
+  image(video, 0, 0);
   
   int numWhitePixels = Core.countNonZero(opencv.getGray());
   float percentMoving = numWhitePixels / (float)(opencv.width*opencv.height);
